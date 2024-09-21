@@ -1,0 +1,136 @@
+    .sms-campaign-scheduler {
+        font-family: sans-serif;
+        max-width: 1400px;
+        margin: 0 auto;
+        margin-top: 10px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+
+    }
+    
+    .header-scheduler {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .header-scheduler h1 {
+        margin: 0;
+    }
+    
+    .quota {
+        font-size: 14px;
+        color: #666;
+    }
+    
+    .actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .refresh-button,
+    .add-button {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    .refresh-button {
+        background-color: #eee;
+    }
+    
+    .add-button {
+        background-color: #007bff;
+        color: #fff;
+    }
+    
+    .filter {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .filter-dropdown {
+        padding: 8px 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+    
+    .filter-date {
+        padding: 8px 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+    
+    .filter-search {
+        padding: 8px 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    .table {
+        margin-bottom: 20px;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    th,
+    td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ccc;
+    }
+    
+    th {
+        background-color: #f2f2f2;
+    }
+    
+    .no-campaigns {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+    }
+    
+    .no-campaigns img {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 20px;
+    }
+    
+    .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .prev-button,
+    .total-button,
+    .next-button {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    .prev-button,
+    .next-button {
+        background-color: #eee;
+    }
+    
+    .total-button {
+        background-color: #007bff;
+        color: #fff;
+    }

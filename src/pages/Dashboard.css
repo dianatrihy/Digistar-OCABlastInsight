@@ -1,0 +1,165 @@
+    .container {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+        margin: 0 auto;
+        max-width: 1400px;
+    }
+    
+    h3,
+    h6 {
+        /* text-align: center; */
+        color: #333;
+    }
+
+    h6 {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    
+    .row {
+        /* margin-bottom: 20px; */
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .quota-card {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: left;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        width: 180px;
+    }
+    
+    .quota-title {
+        font-weight: bold;
+        color: #555;
+        font-size: 14px;
+        margin-bottom: 10px;
+        /* background-color: aqua; */
+        width: fit-content;
+        padding: 4px 8px;
+        border-radius: 20px;
+    }
+    
+    .quota-value {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+    
+    .quota-unit {
+        font-size: 14px;
+        color: #888;
+    }
+
+    .blue {
+        background-color: #a0c9ff;
+    }
+
+    .yellow {
+        background-color: #fffb7b8a;
+    }
+
+    .purple {
+        background-color: rgba(242, 151, 249, 0.625);
+    }
+
+    .green {
+        background-color: rgba(110, 245, 126, 0.734);
+    }
+    
+    .recent-activities {
+        margin-top: 40px;
+    }
+
+    .recent-activities table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .recent-activities table th,
+    .recent-activities table td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+        font-size: 14px;
+    }
+
+    .recent-activities table th {
+        background-color: #f1f1f1;
+    }
+    
+    .recent-activities table td.text-center {
+        text-align: center;
+    }
+    .success-rate-container {
+        margin-top: 20px;
+    }
+    
+    /* .success-rate-container h6 {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 10px;
+    } */
+    
+    .success-cards {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .success-card {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        text-align: left;
+        flex: 1;
+        min-width: 150px;
+    }
+    
+    .success-card h5 {
+        font-size: 1.1em;
+        color: #333;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .success-percentage {
+        font-size: 2em;
+        color: #007bff;
+        margin-bottom: 5px;
+    }
+    
+    .success-card p {
+        font-size: 0.9em;
+        color: #777;
+        margin-bottom: 15px;
+    }
+    
+    .success-detail {
+        font-size: 0.9em;
+        color: #333;
+    }
+    
+    .success-detail span {
+        display: block;
+        margin-top: 5px;
+    }
+    
+    @media (max-width: 768px) {
+        .success-cards {
+            flex-direction: column;
+            gap: 10px;
+        }
+    
+        .success-card {
+            min-width: 100%;
+        }
+    }
+    
