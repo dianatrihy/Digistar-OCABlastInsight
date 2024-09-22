@@ -1,10 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './BroadcastScheduler.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
 
+const fetchBlasts = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/api/blasts`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching blasts:', error);
+      throw error;
+    }
+  };
+  
 const BroadcastScheduler = () => {
     let navigate = useNavigate();
     const [campaigns, setCampaigns] = useState([]);
+
+
+      useEffect(() => {
+        const getBlasts = async () => {
+          try {
+            const data = await fetchBlasts();
+            
+            setCampaigns(data.data); // Assuming the response structure is { data: [...] }
+          } catch (error) {
+            console.error('Error fetching blasts:', error);
+          }
+        };
+    
+        getBlasts();
+      }, []);
 
     const handleAddCampaign = () => {
         navigate('/addscheduler');
@@ -64,9 +90,9 @@ const BroadcastScheduler = () => {
                 {campaigns.length > 0 ? (
                 campaigns.map((campaign, index) => (
                     <tr key={index}>
-                    <td>{campaign.name}</td>
-                    <td>{campaign.group}</td>
-                    <td>{campaign.repeat}</td>
+                    <td>{campaign.broadcast_name}</td>
+                    <td>{campaign.contact}</td>
+                    <td>{campaign.daily_max_operation}</td>
                     <td>{campaign.rules}</td>
                     <td>{campaign.status}</td>
                     <td>
@@ -99,7 +125,7 @@ const BroadcastScheduler = () => {
             <button className="prev-button" disabled={true}>
             «
             </button>
-            <button className="total-button">Total: 0</button>
+            <button className="total-button">Total: {campaigns.length}</button>
             <button className="next-button" disabled={true}>
             »
             </button>

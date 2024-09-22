@@ -1,77 +1,91 @@
 import { useState, useEffect } from 'react';
 import ApexCharts from 'react-apexcharts';
 import './InsightSMS.css'; 
+import axios from "axios"
+import moment from 'moment';
+
+const fetchBlasts = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/api/blasts`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching blasts:', error);
+      throw error;
+    }
+  };
 
 const InsightSMS = () => {
     const [chartOptions, setChartOptions] = useState({});
     const [chartSeries, setChartSeries] = useState([]);
-
-    useEffect(() => {
-        const options = {
-        chart: {
-            type: 'bar',
-            height: 350,
-        },
-        plotOptions: {
-            bar: {
-            horizontal: false,
-            columnWidth: '55%',
-            endingShape: 'rounded',
-            },
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        stroke: {
-            show: true,
-            width: 2,
-            colors: ['transparent'],
-        },
-        xaxis: {
-            categories: [
-            '1 August 2024',
-            '2 August 2024',
-            '3 August 2024',
-            '4 August 2024',
-            '5 August 2024',
-            '6 August 2024',
-            '7 August 2024',
-            '8 August 2024',
-            '9 August 2024',
-            '10 August 20',
-            ],
-        },
-        yaxis: {
-            title: {
-            text: 'Messages',
-            },
-        },
-        fill: {
-            opacity: 1,
-        },
-        tooltip: {
-            y: {
-            formatter: function (val) {
-                return val + ' Messages';
-            },
-            },
-        },
-        };
-
-        const series = [
-        {
-            name: 'Total Messages',
-            data: [99, 99, 99, 99, 99, 99, 99, 99, 99, 99],
-        },
-        ];
-
-        setChartOptions(options);
-        setChartSeries(series);
-    }, []);
-
-    const [recentBroadcastActivities] = useState([
+    const [recentBroadcastActivities, setrecentBroadcastActivities] = useState([
         // add broadcast activity data here
     ]);
+
+    useEffect(() => {
+        const getBlasts = async () => {
+            try {
+              const data = await fetchBlasts();
+              
+              setrecentBroadcastActivities(data.data); // Assuming the response structure is { data: [...] }
+
+              const categories = data.data.map(activity => new Date(activity.schedule_start).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' }));
+
+              const options = {
+                chart: {
+                    type: 'bar',
+                    height: 350,
+                },
+                plotOptions: {
+                    bar: {
+                    horizontal: false,
+                    columnWidth: '55%',
+                    endingShape: 'rounded',
+                    },
+                },
+                dataLabels: {
+                    enabled: false,
+                },
+                stroke: {
+                    show: true,
+                    width: 2,
+                    colors: ['transparent'],
+                },
+                xaxis: {
+                    categories: categories,
+                },
+                yaxis: {
+                    title: {
+                    text: 'Messages',
+                    },
+                },
+                fill: {
+                    opacity: 1,
+                },
+                tooltip: {
+                    y: {
+                    formatter: function (val) {
+                        return val + ' Messages';
+                    },
+                    },
+                },
+                };
+        
+                const series = [
+                {
+                    name: 'Total Messages',
+                    data: [99, 99, 99, 99, 99, 99, 99, 99, 99, 99],
+                },
+                ];
+        
+                setChartOptions(options);
+                setChartSeries(series);
+            } catch (error) {
+              console.error('Error fetching blasts:', error);
+            }
+          };
+      
+          getBlasts();
+    }, []);
 
     return (
         <div className="insight">
@@ -172,12 +186,12 @@ const InsightSMS = () => {
                 {recentBroadcastActivities.length > 0 ? (
                     recentBroadcastActivities.map((activity, index) => (
                     <tr key={index}>
-                        <td>{activity.campaignName}</td>
-                        <td>{activity.channel}</td>
+                        <td>{activity.broadcast_name}</td>
+                        <td>{activity.channel ? activity.channel : "SMS"}</td>
                         <td>{activity.contact}</td>
-                        <td>{activity.totalBroadcast}</td>
-                        <td>{activity.createdDate}</td>
-                        <td>{activity.broadcastDate}</td>
+                        <td>{activity.daily_max_operation}</td>
+                        <td>{moment(activity.created_at).format('DD MMMM YYYY')}</td>
+                        <td>{moment(activity.schedule_start).format('DD MMMM YYYY')}</td>
                         <td>{activity.status}</td>
                     </tr>
                     ))
